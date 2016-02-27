@@ -7,8 +7,6 @@
 
         public function createUser( $userId, $password, $name){
             $this->db->query("INSERT INTO users (user_id,password,name) VALUES ('{$user_id}','{$password}','{$name}')");
-            return true;
-        }
 
         public function readUsers(){
             $query = $this->db->query ("SELECT * FROM users");
@@ -28,8 +26,6 @@
 
         public function deleteUser( $userId ){
             $query = $this->db->delete('users',array('user_id'=>$userId));
-            return $query;
-        }
     
     }
 ?>
