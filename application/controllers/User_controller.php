@@ -5,10 +5,25 @@ require APPPATH . '/libraries/REST_Controller.php';
 
 class User_controller extends REST_Controller {
 
-   	public function getUsers(){
+   	function getUsers(){
    		$this->load->model('Users_model');
    		$data["users"] = $this->Users_model->readUsers();
    		$this->load->view('Welcome', $data);
+   	}
+
+   	function login_post() {
+        $params = json_decode(file_get_contents('php://input'), TRUE);
+        $this->load->model('Users_model');
+        $data = $this->Users_model->getUser($params["userId"], $params["password"]); // 1 if incorrect password, 2 if invalid users
+        if($data == 1) {
+        	$this->response($data, 1);
+        }
+        else if ($data == 2) {
+        	$this->response($data, 2);
+        }
+        else {
+      		$this->response($data, 200);
+      	}
    	}
 
    	function users_post() {

@@ -5,9 +5,24 @@
             parent::__construct();
         }
 
+        function getUser($userId, $password) {
+            $query = $this->db->query("SELECT * FROM users WHERE user_id = '{$userId}'");
+            if($query->num_rows() > 0) {
+                $ret = $query->row();
+                    if($ret->password == $password) {
+                        return $query->result();
+                    }
+                    else {
+                        return 1; // incorrect password
+                    }
+            } else {
+                return 2; //invalid user
+            }
+        }
+
         public function createUser( $userId, $password, $name){
             $this->db->query("INSERT INTO users (user_id,password,name) VALUES ('{$user_id}','{$password}','{$name}')");
-
+        }
         public function readUsers(){
             $query = $this->db->query ("SELECT * FROM users");
             if($query->num_rows() > 0) {
@@ -26,6 +41,7 @@
 
         public function deleteUser( $userId ){
             $query = $this->db->delete('users',array('user_id'=>$userId));
-    
+        }
+
     }
 ?>
