@@ -21,8 +21,9 @@
         }
 
         public function createUser( $userId, $password, $name){
-            $this->db->query("INSERT INTO users (user_id,password,name) VALUES ('{$user_id}','{$password}','{$name}')");
+            $this->db->query("INSERT INTO users (user_id,password,name) VALUES ('{$userId}','{$password}','{$name}')");
         }
+
         public function readUsers(){
             $query = $this->db->query ("SELECT * FROM users");
             if($query->num_rows() > 0) {
@@ -35,7 +36,7 @@
         }
 
         public function updateUser($userId, $password, $name){
-            $query = $this->db->query( "UPDATE users SET password = '{$password}', WHERE user_id = '{$username}', name = '{$name}'");
+            $query = $this->db->query( "UPDATE users SET password = '{$password}',  name = '{$name}' WHERE user_id = '{$userId}'");
             return $query;
         }
 
