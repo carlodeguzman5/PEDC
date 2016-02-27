@@ -6,7 +6,7 @@
         }
 
         public function createUser( $userId, $password, $name){
-            $this->db->query("INSERT INTO users (user_id,password,name) VALUES ('{$user_id}','{$password}','{$name}')");
+            $this->db->query("INSERT INTO users (user_id,password,name) VALUES ('{$userId}','{$password}','{$name}')");
 
         public function readUsers(){
             $query = $this->db->query ("SELECT * FROM users");
