@@ -36,4 +36,17 @@ class User_controller extends REST_Controller {
         	$this->response($data, 404);
         }
    }
+
+   // CREATE
+
+   function createUser_post() {
+   		$params = json_decode(file_get_contents('php://input'), TRUE);
+        $this->load->model('Users_model');
+        $data = $this->Users_model->createUser($params['userId'], $params['password'], $params['email'], $params['schoolId']);
+        if($data != NULL) {
+          $this->response($data, 200);
+        } else {
+          $this->response($data, 404);
+        }
+   }
 }

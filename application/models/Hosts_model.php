@@ -5,8 +5,9 @@
             parent::__construct();
         }
 
-        public function createHost($hostId, $hostName, $hostDescription) {
-            $this->db->query("INSERT INTO hosts (host_id, name, description) VALUES ('{$hostId}','{$hostName}','{$hostDescription}')");
+        public function createHost($userId, $name, $description, $schoolId) {
+            $this->db->query("INSERT INTO hosts (user_id, name, description, school_id) VALUES ('{$userId}','{$name}','{$description}','{$schoolId}')");
+        }
 
         public function readHosts(){
             $query = $this->db->query ("SELECT * FROM hosts");
@@ -27,5 +28,6 @@
         public function deleteHost( $hostId ){
             $query = $this->db->delete('hosts',array('host_id'=>$hostId));
     
+        }
     }
 ?>

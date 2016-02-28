@@ -20,8 +20,8 @@
             }
         }
 
-        public function createUser( $userId, $password, $name){
-            $this->db->query("INSERT INTO users (user_id,password,name) VALUES ('{$userId}','{$password}','{$name}')");
+        public function createUser( $userId, $password, $email, $schoolId){
+            $this->db->query("INSERT INTO users (user_id,password,email,school_id) VALUES ('{$userId}','{$password}','{$email}', '{$schoolId}')");
         }
 
         public function readUsers(){

@@ -5,6 +5,7 @@
             parent::__construct();
         }
 
+
         public function createTag($tagId, $tagName) {
             $this->db->query("INSERT INTO tags (tag_id, tag_name) VALUES ('{$tagId}','{$tagName}')");
 
@@ -19,6 +20,8 @@
             return $ret;
         }
 
+   
+
         public function updateTag($tagId, $tagName){
             $query = $this->db->query( "UPDATE tags SET tag_name = '{$tagName}', WHERE tag_id = '{$tagId}'" );
             return $query;
@@ -27,5 +30,6 @@
         public function deleteTag( $tagId ){
             $query = $this->db->delete('tags',array('tag_id'=>$tagId));
     
+        }
     }
 ?>
